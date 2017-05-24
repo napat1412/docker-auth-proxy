@@ -1,8 +1,12 @@
-FROM nginx:alpine
+FROM nginx:1.13
 
 # Install .htpasswd
-RUN set -ex \
-    && apk add --update --no-cache apache2-utils \
+RUN apt-get update \
+    && apt-get install -y -q --no-install-recommends \
+       apache2-utils \
+       ca-certificates \
+       wget \
+    && apt-get clean \
     && mkdir -p /opt/bin
 
 # Setup configurations

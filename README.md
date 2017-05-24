@@ -17,7 +17,7 @@ elasticsearch running on host: elasticsearch and listen port is 9200.
 If you want to proxy from nginx to kibana, you run the following command.
 
 ```bash
-$ docker run -dp 80:80 \
+$ docker run -d -p 5602:5602 -p 9201:9201 \
              -e USERNAME=admin \
              -e PASSWORD=admin \
              -e PROXY=kibana:5601,5602;elasticsearch:9200,9201 \
