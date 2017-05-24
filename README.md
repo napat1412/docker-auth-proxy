@@ -12,16 +12,16 @@ $ docker build -t nginx-auth-proxy .
 ## Run
 
 **Assumption**  
-kibana running on docker and listen port is 5601.
+kibana running on host: kibana and listen port is 5601.
+elasticsearch running on host: elasticsearch and listen port is 9200.
 If you want to proxy from nginx to kibana, you run the following command.
 
 ```bash
 $ docker run -dp 80:80 \
-             --link=kibana:kibanaalias
-             -e USERNAME=hoge \
-             -e PASSWORD=age \
-             -e ADDRESS=kibana:5601 \
+             -e USERNAME=admin \
+             -e PASSWORD=admin \
+             -e PROXY=kibana:5601,5602;elasticsearch:9200,9201 \
              nginx-auth-proxy
 ```
 
-and then, you can access to `localhost` on browser.
+and then, you can access to `localhost:5602` or `localhost:9201` on browser.
